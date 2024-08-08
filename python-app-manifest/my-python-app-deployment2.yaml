@@ -47,5 +47,5 @@ spec:
               name: my-python-app-config
               key: APP_COLOR
         ports:
-        - containerPort: 8080
+        - containerPort: 81
 

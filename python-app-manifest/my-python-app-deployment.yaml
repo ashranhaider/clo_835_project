@@ -46,6 +46,16 @@ spec:
             configMapKeyRef:
               name: my-python-app-config
               key: APP_COLOR
+        - name: BACKGROUND_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: my-python-app-config
+              key: BACKGROUND_IMAGE
+        - name: BACKGROUND_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: my-python-app-config
+              key: MY_NAME
         ports:
-        - containerPort: 8080
+        - containerPort: 81
 

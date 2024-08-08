@@ -11,6 +11,8 @@ DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "passwors"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
+NAME_FROM_ENV = os.environ.get('MY_NAME') or "Ashran Haider"
+Background_Image_ENV = os.environ.get('BACKGROUND_IMAGE') or ""
 DBPORT = int(os.environ.get("DBPORT"))
 
 
@@ -48,11 +50,11 @@ COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lim
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('addemp.html', color=color_codes[COLOR])
+    return render_template('addemp.html', color=color_codes[COLOR], bkImage=Background_Image_ENV, myname=NAME_FROM_ENV)
 
 @app.route("/about", methods=['GET','POST'])
 def about():
-    return render_template('about.html', color=color_codes[COLOR])
+    return render_template('about.html', color=color_codes[COLOR], bkImage=Background_Image_ENV, myname=NAME_FROM_ENV)
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
@@ -80,7 +82,7 @@ def AddEmp():
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
-    return render_template("getemp.html", color=color_codes[COLOR])
+    return render_template("getemp.html", color=color_codes[COLOR], bkImage=Background_Image_ENV, myname=NAME_FROM_ENV)
 
 
 @app.route("/fetchdata", methods=['GET','POST'])
@@ -109,7 +111,7 @@ def FetchData():
         cursor.close()
 
     return render_template("getempoutput.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
+                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR], bkImage=Background_Image_ENV)
 
 if __name__ == '__main__':
     
@@ -134,4 +136,6 @@ if __name__ == '__main__':
         print("Color not supported. Received '" + COLOR + "' expected one of " + SUPPORTED_COLORS)
         exit(1)
 
-    app.run(host='0.0.0.0',port=8080,debug=True)
+    print("Image from S3 =" + Background_Image_ENV)
+
+    app.run(host='0.0.0.0',port=81,debug=True)
