@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-python-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-python-app
+  template:
+    metadata:
+      labels:
+        app: my-python-app
+    spec:
+      containers:
+      - name: my-python-app
+        image: ashranhaider/clo835-python-app-2:latest
+        env:
+        - name: DBHOST
+          valueFrom:
+            secretKeyRef:
+              name: my-python-app-secrets
+              key: DBHOST
+        - name: DBPORT
+          valueFrom:
+            secretKeyRef:
+              name: my-python-app-secrets
+              key: DBPORT
+        - name: DBUSER
+          valueFrom:
+            secretKeyRef:
+              name: my-python-app-secrets
+              key: DBUSER
+        - name: DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: my-python-app-secrets
+              key: DATABASE
+        - name: DBPWD
+          valueFrom:
+            secretKeyRef:
+              name: my-python-app-secrets
+              key: DBPWD
+        - name: APP_COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: my-python-app-config
+              key: APP_COLOR
+        ports:
+        - containerPort: 8080
+
