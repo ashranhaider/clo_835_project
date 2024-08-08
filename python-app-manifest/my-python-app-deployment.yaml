@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-python-app
-        image: ashranhaider/clo835-python-app:latest
+        image: ashranhaider/clo-835-project:v1
         imagePullPolicy: Always
         env:
         - name: DBHOST
