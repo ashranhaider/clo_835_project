@@ -15,6 +15,7 @@ spec:
       containers:
       - name: my-python-app
         image: ashranhaider/clo835-python-app:latest
+        imagePullPolicy: Always
         env:
         - name: DBHOST
           valueFrom:
