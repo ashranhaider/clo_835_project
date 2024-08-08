@@ -51,7 +51,7 @@ spec:
             configMapKeyRef:
               name: my-python-app-config
               key: BACKGROUND_IMAGE
-        - name: BACKGROUND_IMAGE
+        - name: MY_NAME
           valueFrom:
             configMapKeyRef:
               name: my-python-app-config
