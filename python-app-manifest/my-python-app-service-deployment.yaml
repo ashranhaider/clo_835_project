@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: my-python-app-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 81
     targetPort: 81
-    nodePort: 30000
   selector:
     app: my-python-app
-
